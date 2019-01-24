@@ -48,7 +48,9 @@ public class StringUtils{
 	public String getDayFromDate(String dateStr){
 		// replace the return statement with code to extract the day
 		// from a date string and then return it
-		return "This method should return the day...";
+		int indexOfDay = dateStr.lastIndexOf("/");
+		String dayResult = dateStr.substring(3, indexOfDay);
+		return dayResult;
 	}
 
 	public String getYearFromDate(String dateStr){
