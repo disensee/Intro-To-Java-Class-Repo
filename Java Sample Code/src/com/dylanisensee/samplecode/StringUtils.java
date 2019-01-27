@@ -48,15 +48,18 @@ public class StringUtils{
 	public String getDayFromDate(String dateStr){
 		// replace the return statement with code to extract the day
 		// from a date string and then return it
-		int indexOfDay = dateStr.lastIndexOf("/");
-		String dayResult = dateStr.substring(3, indexOfDay);
+		int startOfDay = dateStr.indexOf("/") + 1;
+		int endOfDay = dateStr.lastIndexOf("/");
+		String dayResult = dateStr.substring(startOfDay , endOfDay);
 		return dayResult;
 	}
 
 	public String getYearFromDate(String dateStr){
 		// replace the return statement with code to extract the year
 		// from a date string and then return it
-		return "This method should return the year...";
+		int indexOfYear = dateStr.lastIndexOf("/") + 1;
+		String yearResult = dateStr.substring(indexOfYear);
+		return yearResult;
 	}
 
 }
