@@ -3,29 +3,24 @@ import java.util.Scanner;
 public class TipCalculator {
 
 	public static void main(String[] args) {
-		float amount, totalTax, totalCost, tip;
-		final float STATE_TAX;
-		final float COUNTY_TAX;
-		final float TIP_PERCENT;
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("What is the price of the meal?");
+		float price = scanner.nextFloat();
 		
-		Scanner keyboard = new Scanner(System.in);
-		amount = keyboard.nextFloat();
+		final float STATE_TAX = 0.055F;
+		final float COUNTY_TAX = 0.02F;
+		final float TIP_PERCENT = 0.15F;
 		
-		STATE_TAX = amount * 0.055F;
-		COUNTY_TAX = amount * 0.02F;
-		TIP_PERCENT = 0.15F;
-		totalTax = STATE_TAX + COUNTY_TAX;
-		tip = (amount + totalTax) * TIP_PERCENT;
-		totalCost = amount + totalTax + tip;
+		float totalStateTax = price * STATE_TAX;
+		float totalCountyTax = price * COUNTY_TAX;
+		float totalTax = totalStateTax + totalCountyTax;
+		float tip = (price + totalTax) * TIP_PERCENT;
+		float grandTotal = price + totalTax + tip;
 		
-		
-		System.out.println("Enter the dollar amount of your purchase:");
-		System.out.println("The original amount of your purchase is $" + amount);
-		System.out.println("The state sales tax on your purchase is $" + STATE_TAX);
-		System.out.println("The county sales tax on your purchase is $" + COUNTY_TAX);
-		System.out.println("The total amount of sales tax on your purchase is $" + totalTax);
-		System.out.println("The total tip for your purchase is " + tip);
-		System.out.println("The total cost of your purhase with tax and tip is $" + totalCost);
+		System.out.println("Price:" + price);
+		System.out.println("Tax: " + totalTax);
+		System.out.println("Tip:" + tip);
+		System.out.println("Total:" + grandTotal);
 	}
 
 }
