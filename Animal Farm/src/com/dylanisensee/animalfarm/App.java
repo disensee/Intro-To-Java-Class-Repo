@@ -12,12 +12,10 @@ public class App {
 		Egg e3 = c1.layEgg();
 		
 		System.out.println(c1.getName() + " just laid " + c1.getTotalEggsLaid() + " eggs");
-		System.out.println("First egg: " + e1.size + " " + e1.dateLaid);
-		System.out.println("Second egg: " + e2.size + " " + e2.dateLaid);
-		System.out.println("Third egg: " + e3.size + " " + e3.dateLaid);
+		System.out.println("First egg: " + e1.getSize() + " " + e1.getDateLaid());
+		System.out.println("Second egg: " + e2.getSize() + " " + e2.getDateLaid());
+		System.out.println("Third egg: " + e3.getSize() + " " + e3.getDateLaid());
 		
-		String s1 = "hi";
-		String s2 = "hi";
-	}
 
+	}
 }
