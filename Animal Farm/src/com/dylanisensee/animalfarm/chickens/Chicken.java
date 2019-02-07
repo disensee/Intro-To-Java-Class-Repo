@@ -2,6 +2,9 @@ package com.dylanisensee.animalfarm.chickens;
 import java.util.Random;
 
 public class Chicken {
+	
+	public static int totalEggsLaidByAllChickens = 0;
+	
 	//instance variable (aka properties)
 	private String name = null;
 	private int totalEggsLaid = 0;
@@ -14,6 +17,7 @@ public class Chicken {
 		
 		Egg e = new Egg(size);
 		totalEggsLaid++;
+		totalEggsLaidByAllChickens++;
 		return e;
 	}
 	
