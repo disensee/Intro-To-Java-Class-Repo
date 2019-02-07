@@ -15,9 +15,10 @@ public class NestedLoops {
 		}
 		
 		
-		//enhanced for loop
+		//loop through an array of objects using the enhanced for loop
 		String[] someStrings = {"Hello", "World", "!"};
 		for(String s : someStrings ) {
+			//the variable s will hold the "current element" in the loop
 			System.out.println(s);
 		}
 		
@@ -33,12 +34,16 @@ public class NestedLoops {
 			currentDate.setYear(currentYear + 1); 
 			System.out.println(currentDate);
 		}
-		
+		//notice how the dates are updated to next year when we loop again
+		//this is different than what we saw when we altered the array of ints
+		//(primitives are 'copy by value' and objects are 'copy by reference' (memory address)
 		for(Date d : someDates) {
 			System.out.println(d);
 		}
 		
 		//Nested Loops
+		//A string is an array of chars, let's loop through each string
+		//and then loop through each char in each string
 		for(int x = 0; x < someStrings.length; x++) {
 			System.out.println(someStrings[x]);
 			for(char c : someStrings[x].toCharArray()) {
@@ -47,6 +52,7 @@ public class NestedLoops {
 		}
 		
 		//Multiple dimension arrays
+		//nested loops are super useful for looping through 2-D arrays
 		String[][] quarterlySales = {
 				{"2016", "2017", "2018", "2019"},
 				{"500", "600", "700", "900"},
