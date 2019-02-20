@@ -1,6 +1,5 @@
 package com.dylanisensee.samplecode;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class ArrayProblemsPart1 {
@@ -55,15 +54,21 @@ public class ArrayProblemsPart1 {
 		
 		// PROBLEM 4 - Copy the values from one array to another
 		// Declare an array named scoresCopy, then use a loop to copy the values from the scores array to the scoresCopy array
-		int[] scoresCopy = new int[4];
-		
+		int[] scoresCopy = new int[scores.length];
+		for(int i = 0; i < scores.length; i++) {
+			scoresCopy[i] = scores[i];
+			System.out.println(scoresCopy[i]);
+		}
 		
 		// PROBLEM 5 - Finding the index of an element in an array
 		// Write code that will determine the position (index number) of 75 in the 'scores' array.
 		// Assign the position to the variable below
-		int indexOf75;
-		
-		
+		int indexOf75 = 0;
+		for(int i = 0; i < scores.length; i++) {
+			if(scores[i] == 75)
+				indexOf75 = i;
+		}
+		System.out.println("The index of 75 is: " + indexOf75);
 		// PROBLEM 6 - Create an array based on another array
 		// Create an array of ints named 'asciiArray' which is the same length as the string below (in the variable someString).
 		// Loop through each character in the string and convert it to it's ASCII number, then add the number to the 'asciiArray'
