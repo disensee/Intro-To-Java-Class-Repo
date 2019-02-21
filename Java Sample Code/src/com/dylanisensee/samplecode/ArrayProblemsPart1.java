@@ -74,7 +74,13 @@ public class ArrayProblemsPart1 {
 		// Loop through each character in the string and convert it to it's ASCII number, then add the number to the 'asciiArray'
 		// HINT: in order to convert a char to an int, you can simply cast it like this:  int someInt = (int)someChar
 		String someString = "Hello!";
-				
+		int[] asciiArray = new int [someString.length()];
+		
+		for(int i = 0; i < asciiArray.length; i++){
+			asciiArray[i] = someString.charAt(i);
+			System.out.println(asciiArray[i]);
+			
+		}
 
 	}
 
