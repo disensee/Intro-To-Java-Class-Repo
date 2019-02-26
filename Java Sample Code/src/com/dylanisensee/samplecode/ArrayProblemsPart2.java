@@ -122,13 +122,13 @@ public class ArrayProblemsPart2 {
 		int[] duplicateNumbers = new int[0];
 		int indexOfDuplicate = 0;
 		for(int i = 0; i < numbers.length; i++) {
-				for(int x = i + 1; x < numbers.length; x++) {
-					if(numbers[i] == numbers[x]) {
-						indexOfDuplicate = ArrayProblemsPart2.indexOfElement(duplicateNumbers, numbers[i]);
-						if(indexOfDuplicate == -1)
-							duplicateNumbers = ArrayProblemsPart2.addElement(duplicateNumbers, numbers[x]);
-					}
+			for(int x = i + 1; x < numbers.length; x++) {
+				if(numbers[i] == numbers[x]) {
+					indexOfDuplicate = ArrayProblemsPart2.indexOfElement(duplicateNumbers, numbers[i]);
+					if(indexOfDuplicate == -1)
+						duplicateNumbers = ArrayProblemsPart2.addElement(duplicateNumbers, numbers[x]);
 				}
+			}
 		}
 			for(int i = 0; i < duplicateNumbers.length; i++) {
 				System.out.println(duplicateNumbers[i]);
