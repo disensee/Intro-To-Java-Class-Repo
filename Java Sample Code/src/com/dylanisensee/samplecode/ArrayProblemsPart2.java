@@ -116,15 +116,23 @@ public class ArrayProblemsPart2 {
 		// that occur more than once in the original array. Use the 'numbers' array below to test your code.
 		// The new array should contain the following values: 1,5,9
 		// Finally, sysout each value in the new array
+		
 		int[] numbers = {1,2,5,1,3,7,5,8,5,9,9,10};
 		Arrays.sort(numbers);
-		int[] duplicateNumbers;
+		int[] duplicateNumbers = new int[0];
+		int indexOfDuplicate = 0;
 		for(int i = 0; i < numbers.length; i++) {
-			for(int x = i + 1; x < numbers.length; x++) {
-					
-			}
+				for(int x = i + 1; x < numbers.length; x++) {
+					if(numbers[i] == numbers[x]) {
+						indexOfDuplicate = ArrayProblemsPart2.indexOfElement(duplicateNumbers, numbers[i]);
+						if(indexOfDuplicate == -1)
+							duplicateNumbers = ArrayProblemsPart2.addElement(duplicateNumbers, numbers[x]);
+					}
+				}
 		}
-			
+			for(int i = 0; i < duplicateNumbers.length; i++) {
+				System.out.println(duplicateNumbers[i]);
+			}
 				
 	}
 	
