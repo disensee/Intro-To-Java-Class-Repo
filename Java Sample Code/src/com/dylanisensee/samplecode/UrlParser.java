@@ -100,10 +100,11 @@ public class UrlParser {
 
 		if (isValid(url)) {
 
-			// your code goes here
+			String[] protocolSplit = url.split(":");
+			protocol = protocolSplit[0];
 
 		}
-
+		
 		return protocol;
 	}
 
@@ -122,7 +123,8 @@ public class UrlParser {
 
 		if (isValid(url)) {
 
-			// your code goes here
+			String[] urlSplit = url.split("/");
+			host = urlSplit[2];
 			
 		}
 
@@ -147,8 +149,16 @@ public class UrlParser {
 
 		if (isValid(url)) {
 
-			// your code goes here
-
+			String[] urlSplit = url.split("/");
+			if(urlSplit[urlSplit.length - 1].contains("?")) {
+				String endOfUrl = urlSplit[urlSplit.length - 1];
+				String query = endOfUrl.substring(endOfUrl.indexOf("?") + 1);
+				queryString = query;
+			}else {
+				return "";
+			}
+			
+			
 		}
 
 		return queryString;
