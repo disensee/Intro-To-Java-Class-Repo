@@ -36,32 +36,32 @@ public class UrlParser {
 
 		System.out.println("-----------------------------------------------------------\n");
 
-		/*
+		
 		// Test getFileName()
-		System.out.println(url1 + "  FILENAME=" + up.getFileName(url1));
-		System.out.println(url2 + "  FILENAME=" + up.getFileName(url2));
-		System.out.println(url3 + "  FILENAME=" + up.getFileName(url3));
-		System.out.println(url4 + "  FILENAME=" + up.getFileName(url4));
+		System.out.println(url1 + "  FILENAME=" + UrlParser.getFileName(url1));
+		System.out.println(url2 + "  FILENAME=" + UrlParser.getFileName(url2));
+		System.out.println(url3 + "  FILENAME=" + UrlParser.getFileName(url3));
+		System.out.println(url4 + "  FILENAME=" + UrlParser.getFileName(url4));
 
 		System.out.println("-----------------------------------------------------------\n");
-
+		
 		// Test getFileExtension()
-		System.out.println(url1 + "  EXTENSION=" + up.getFileExtension(url1));
-		System.out.println(url2 + "  EXTENSION=" + up.getFileExtension(url2));
-		System.out.println(url3 + "  EXTENSION=" + up.getFileExtension(url3));
-		System.out.println(url4 + "  EXTENSION=" + up.getFileExtension(url4));
+		System.out.println(url1 + "  EXTENSION=" + UrlParser.getFileExtension(url1));
+		System.out.println(url2 + "  EXTENSION=" + UrlParser.getFileExtension(url2));
+		System.out.println(url3 + "  EXTENSION=" + UrlParser.getFileExtension(url3));
+		System.out.println(url4 + "  EXTENSION=" + UrlParser.getFileExtension(url4));
 
 		System.out.println("-----------------------------------------------------------\n");
-
+		/*
 		// Test getPath()
-		System.out.println(url1 + "  PATH=" + up.getPath(url1));
-		System.out.println(url2 + "  PATH=" + up.getPath(url2));
-		System.out.println(url3 + "  PATH=" + up.getPath(url3));
-		System.out.println(url4 + "  PATH=" + up.getPath(url4));
+		System.out.println(url1 + "  PATH=" + UrlParser.getPath(url1));
+		System.out.println(url2 + "  PATH=" + UrlParser.getPath(url2));
+		System.out.println(url3 + "  PATH=" + UrlParser.getPath(url3));
+		System.out.println(url4 + "  PATH=" + UrlParser.getPath(url4));
 
 		
 		// Test parseQueryStringParams()
-		up.parseQueryStringParams(url4);
+		UrlParser.parseQueryStringParams(url4);
 		*/
 
 	}
@@ -180,8 +180,20 @@ public class UrlParser {
 		String fileName = null;
 
 		if (isValid(url)) {
-
-			// your code goes here
+			
+			
+			String[] urlSplit = url.split("/");
+			if(urlSplit[urlSplit.length -1].contains(".") && !urlSplit[urlSplit.length -1].contains(".com")) {
+				fileName = urlSplit[urlSplit.length-1];
+				
+			}else{
+				fileName = "";
+			}
+			
+			if(urlSplit[urlSplit.length - 1].contains("?")) {
+				String[] removeQuery = urlSplit[urlSplit.length - 1].split("\\?");
+				fileName = removeQuery[0];
+			}
 
 			
 		}
@@ -203,7 +215,9 @@ public class UrlParser {
 
 		if (isValid(url)) {
 
-			// your code goes here
+			String fileName = UrlParser.getFileName(url);
+			//int fileExtension = fileName.indexOf(".");
+			
 			
 		}
 
