@@ -52,17 +52,19 @@ public class UrlParser {
 		System.out.println(url4 + "  EXTENSION=" + UrlParser.getFileExtension(url4));
 
 		System.out.println("-----------------------------------------------------------\n");
-		/*
+		
 		// Test getPath()
 		System.out.println(url1 + "  PATH=" + UrlParser.getPath(url1));
 		System.out.println(url2 + "  PATH=" + UrlParser.getPath(url2));
 		System.out.println(url3 + "  PATH=" + UrlParser.getPath(url3));
 		System.out.println(url4 + "  PATH=" + UrlParser.getPath(url4));
 
-		
+		/*
 		// Test parseQueryStringParams()
 		UrlParser.parseQueryStringParams(url4);
 		*/
+		
+		
 
 	}
 
@@ -183,7 +185,9 @@ public class UrlParser {
 			
 			
 			String[] urlSplit = url.split("/");
-			if(urlSplit[urlSplit.length -1].contains(".") && !urlSplit[urlSplit.length -1].contains(".com")) {
+			String hostName = urlSplit[2];
+			
+			if(urlSplit[urlSplit.length -1].contains(".")) {
 				fileName = urlSplit[urlSplit.length-1];
 				
 			}else{
@@ -194,7 +198,12 @@ public class UrlParser {
 				String[] removeQuery = urlSplit[urlSplit.length - 1].split("\\?");
 				fileName = removeQuery[0];
 			}
-
+			
+			if(hostName == urlSplit[urlSplit.length - 1]) {
+				fileName = "";
+			}
+			
+			
 			
 		}
 
@@ -216,9 +225,12 @@ public class UrlParser {
 		if (isValid(url)) {
 
 			String fileName = UrlParser.getFileName(url);
-			//int fileExtension = fileName.indexOf(".");
-			
-			
+			if(fileName != "") {
+				String fileExtension = fileName.substring(fileName.indexOf("."));
+				extension = fileExtension;
+			}else {
+				return "";
+			}
 		}
 
 		return extension;
@@ -236,9 +248,20 @@ public class UrlParser {
 		String path = null;
 
 		if (isValid(url)) {
-
-			// your code goes here
 			
+			String[] pathSplit = url.split(".com");
+			String hostName = pathSplit[0];
+			if(hostName == pathSplit[pathSplit.length - 1]) {
+				path = "";
+			}else {
+				path = pathSplit[pathSplit.length - 1];
+			}
+			
+			if(path.contains("?")) {
+				String[] removeQuery = path.split("\\?");
+				path = removeQuery[0];
+			}
+				
 		}
 
 		return path;
@@ -266,9 +289,8 @@ public class UrlParser {
 
 		if (isValid(url)) {
 
-			// your code goes here
-
-
+			String query = UrlParser.getQueryString(url);
+			
 		}
 
 	}
