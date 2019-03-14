@@ -5,7 +5,16 @@ import java.util.regex.Pattern;
 public class UrlParser {
 
 	public static void main(String[] args) {
-
+		
+		/*
+		Replace Method Example
+		String str = "foo/bar:bang";
+		String[] ar = str.split(":");
+		String b = ar[1];
+		String newStr = str.replace(b, "");
+		System.out.println(newStr);
+		*/
+		
 		String url1 = "http://www.acme.com";
 		String url2 = "http://www.acme.com/widgets/";
 		String url3 = "https://www.example.com/blog/some-blog-post.html";
@@ -251,24 +260,26 @@ public class UrlParser {
 
 		if (isValid(url)) {
 			
-			String[] pathSplit = url.split(".com");
-			String hostName = pathSplit[0];
-			if(hostName == pathSplit[pathSplit.length - 1]) {
-				path = "";
-			}else {
-				path = pathSplit[pathSplit.length - 1];
-			}
+			String hostName = UrlParser.getHost(url);
+			String[] pathSplit = url.split("/");
 			
-			if(path.contains("?")) {
-				String[] removeQuery = path.split("\\?");
-				path = removeQuery[0];
-			}
+			for(int x = 0; x < pathSplit.length; x++){
+				if(pathSplit[x].equals(hostName)) {
+					path = pathSplit[x].replace(pathSplit[x], "");
+				//}else {
+					
+				//}
+				}
 				
+			}	
+		
+		path = url.substring(url.indexOf(hostName) - 1, url.lastIndexOf("/"));
+		path = path.replace(hostName, "");
 		}
-
 		return path;
+			
 	}
-	//is the filename part of the path? I looked around online and it seems that it is. 
+	
 	/**
 	 * Prints out the query string name and value pairs.
 	 * 
@@ -289,25 +300,14 @@ public class UrlParser {
 	 */
 	public static void parseQueryStringParams(String url) {
 		String query = null;
-		String keyValue = null;
+		
 		if (isValid(url)) {
 
 			query = UrlParser.getQueryString(url);
-			if(query.contains("&")) {
-				String[] querySplit = query.split("&"); 
-				
-				for(int i = 0; i < querySplit.length; i++) {
-					keyValue = querySplit[i];
-					
-					if(querySplit[i].contains("=")) {
-						String[] keySplit = querySplit[i].split("=");
-					
-						for(int j = 0; j < keySplit.length; j += 2) {
-						System.out.println(keySplit[j] + ": " + keySplit[j + 1]);
-						
-						}
-					}
-				}
+			String[] querySplit = query.split("&");
+			for(int x = 0; x < querySplit.length; x++) {
+				String[] keyValue = querySplit[x].split("=");
+				System.out.println(keyValue[0] + ": " + keyValue[1]);
 			}
 		}	
 	}

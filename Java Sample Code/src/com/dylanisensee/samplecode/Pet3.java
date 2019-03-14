@@ -1,6 +1,12 @@
 package com.dylanisensee.samplecode;
 
 public class Pet3 {
+	
+	public static void main(String[] args) {
+		Pet3 p1 = new Pet3();
+		System.out.println(p1);
+	}
+	
 	private String name;
 	private int age;        // in years
 	private double weight; //in pounds
