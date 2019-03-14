@@ -59,10 +59,10 @@ public class UrlParser {
 		System.out.println(url3 + "  PATH=" + UrlParser.getPath(url3));
 		System.out.println(url4 + "  PATH=" + UrlParser.getPath(url4));
 
-		/*
+		
 		// Test parseQueryStringParams()
 		UrlParser.parseQueryStringParams(url4);
-		*/
+		
 		
 		
 
@@ -286,13 +286,25 @@ public class UrlParser {
 	 * @param url
 	 */
 	public static void parseQueryStringParams(String url) {
-
+		String query = null;
+		String key = null;
+		String value = null;
 		if (isValid(url)) {
 
-			String query = UrlParser.getQueryString(url);
+			query = UrlParser.getQueryString(url);
+			String[] equalsSplit = query.split("=");
+			String[] ampSplit = query.split("&");
+			for(int x = 0; x < equalsSplit.length; x++)
+				for(int i = 0; i < ampSplit.length; i++) {
+					if(equalsSplit[x].contains("id")) {
+						key = equalsSplit[x];
+						value = ampSplit[0].substring(3);
+					}
+				}
+			
 			
 		}
-
+		System.out.println(key + ": " + value);
 	}
 
 }
