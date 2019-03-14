@@ -59,6 +59,8 @@ public class UrlParser {
 		System.out.println(url3 + "  PATH=" + UrlParser.getPath(url3));
 		System.out.println(url4 + "  PATH=" + UrlParser.getPath(url4));
 
+		System.out.println("\n");
+		System.out.println("------------Query String Params------------");
 		
 		// Test parseQueryStringParams()
 		UrlParser.parseQueryStringParams(url4);
@@ -266,7 +268,7 @@ public class UrlParser {
 
 		return path;
 	}
-
+	//is the filename part of the path? I looked around online and it seems that it is. 
 	/**
 	 * Prints out the query string name and value pairs.
 	 * 
@@ -299,7 +301,6 @@ public class UrlParser {
 					
 					if(querySplit[i].contains("=")) {
 						String[] keySplit = querySplit[i].split("=");
-					
 					
 						for(int j = 0; j < keySplit.length; j += 2) {
 						System.out.println(keySplit[j] + ": " + keySplit[j + 1]);
