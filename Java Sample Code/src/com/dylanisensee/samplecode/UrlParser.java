@@ -287,24 +287,27 @@ public class UrlParser {
 	 */
 	public static void parseQueryStringParams(String url) {
 		String query = null;
-		String key = null;
-		String value = null;
+		String keyValue = null;
 		if (isValid(url)) {
 
 			query = UrlParser.getQueryString(url);
-			String[] equalsSplit = query.split("=");
-			String[] ampSplit = query.split("&");
-			for(int x = 0; x < equalsSplit.length; x++)
-				for(int i = 0; i < ampSplit.length; i++) {
-					if(equalsSplit[x].contains("id")) {
-						key = equalsSplit[x];
-						value = ampSplit[0].substring(3);
+			if(query.contains("&")) {
+				String[] querySplit = query.split("&"); 
+				
+				for(int i = 0; i < querySplit.length; i++) {
+					keyValue = querySplit[i];
+					
+					if(querySplit[i].contains("=")) {
+						String[] keySplit = querySplit[i].split("=");
+					
+					
+						for(int j = 0; j < keySplit.length; j += 2) {
+						System.out.println(keySplit[j] + ": " + keySplit[j + 1]);
+						
+						}
 					}
 				}
-			
-			
-		}
-		System.out.println(key + ": " + value);
+			}
+		}	
 	}
-
 }
