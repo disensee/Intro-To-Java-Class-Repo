@@ -259,22 +259,14 @@ public class UrlParser {
 		String path = null;
 
 		if (isValid(url)) {
-			
 			String hostName = UrlParser.getHost(url);
-			String[] pathSplit = url.split("/");
+			String urlAfterHostName = url.substring(url.indexOf(hostName) - 1, url.lastIndexOf("/") );
 			
-			for(int x = 0; x < pathSplit.length; x++){
-				if(pathSplit[x].equals(hostName)) {
-					path = pathSplit[x].replace(pathSplit[x], "");
-				//}else {
-					
-				//}
-				}
-				
-			}	
-		
-		path = url.substring(url.indexOf(hostName) - 1, url.lastIndexOf("/"));
-		path = path.replace(hostName, "");
+			if(urlAfterHostName.contains("/" + hostName)) {
+				path = urlAfterHostName.replace("/" + hostName, "") + "/";
+			}else {
+				path = "";
+			}
 		}
 		return path;
 			
