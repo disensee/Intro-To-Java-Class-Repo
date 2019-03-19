@@ -1,11 +1,23 @@
-package com.dylanisensee.samplecode;
+package Test;
+import java.net.URI;
+import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UrlParser {
 
 	public static void main(String[] args) {
-				
+
+		String str = "foo/bar:bang";
+		String[] ar = str.split(":");
+		String b = ar[1];
+		String newStr = str.replace(b, "");
+		System.out.println(newStr);
+		
+		// url = url.replace(UrlParser.getProtocol(url), "");
+		
 		String url1 = "http://www.acme.com";
 		String url2 = "http://www.acme.com/widgets/";
 		String url3 = "https://www.example.com/blog/some-blog-post.html";
@@ -44,7 +56,7 @@ public class UrlParser {
 		System.out.println(url4 + "  FILENAME=" + UrlParser.getFileName(url4));
 
 		System.out.println("-----------------------------------------------------------\n");
-		
+
 		// Test getFileExtension()
 		System.out.println(url1 + "  EXTENSION=" + UrlParser.getFileExtension(url1));
 		System.out.println(url2 + "  EXTENSION=" + UrlParser.getFileExtension(url2));
@@ -52,20 +64,16 @@ public class UrlParser {
 		System.out.println(url4 + "  EXTENSION=" + UrlParser.getFileExtension(url4));
 
 		System.out.println("-----------------------------------------------------------\n");
-		
+
 		// Test getPath()
 		System.out.println(url1 + "  PATH=" + UrlParser.getPath(url1));
 		System.out.println(url2 + "  PATH=" + UrlParser.getPath(url2));
 		System.out.println(url3 + "  PATH=" + UrlParser.getPath(url3));
 		System.out.println(url4 + "  PATH=" + UrlParser.getPath(url4));
 
-		System.out.println("\n");
-		System.out.println("------------Query String Params------------");
 		
 		// Test parseQueryStringParams()
 		UrlParser.parseQueryStringParams(url4);
-		
-		
 		
 
 	}
@@ -75,7 +83,7 @@ public class UrlParser {
 	 * discuss in Adv Topics. This method is not bullet-proof, but it will serve the
 	 * purpose of this exercise.
 	 * 
-	 * @param url
+	 * @param url 
 	 * @return Returns true if the url parameter is a valid absolute url, returns
 	 *         false otherwise
 	 */
@@ -104,17 +112,17 @@ public class UrlParser {
 
 		if (isValid(url)) {
 
-			String[] protocolSplit = url.split(":");
-			protocol = protocolSplit[0];
+			String[] splitting = url.split(":|/");
+			protocol = splitting[0];
 
 		}
-		
+
 		return protocol;
 	}
 
 	/**
 	 * Extracts the host portion of the url.
-	 * Note that the host potrion of a url always starts just after the two forward slashes (//)
+	 * Note that the host portion of a url always starts just after the two forward slashes (//)
 	 * and continues until the next forward slash.
 	 * Also note that the host is also called the domain name, and/or the server name.
 	 * 
@@ -127,8 +135,8 @@ public class UrlParser {
 
 		if (isValid(url)) {
 
-			String[] urlSplit = url.split("/");
-			host = urlSplit[2];
+			String[] splitting = url.split("/");
+			host = splitting[2];
 			
 		}
 
@@ -150,18 +158,15 @@ public class UrlParser {
 	public static String getQueryString(String url) {
 
 		String queryString = null;
+		String check = "id=";
 
 		if (isValid(url)) {
 
-			String[] urlSplit = url.split("/");
-			if(urlSplit[urlSplit.length - 1].contains("?")) {
-				String endOfUrl = urlSplit[urlSplit.length - 1];
-				String query = endOfUrl.substring(endOfUrl.indexOf("?") + 1);
-				queryString = query;
+			if(url.toLowerCase().contains(check.toLowerCase())) {
+				queryString = url.substring(url.indexOf("id="));
 			}else {
-				return "";
+				queryString = "";
 			}
-			
 			
 		}
 
@@ -185,27 +190,13 @@ public class UrlParser {
 
 		if (isValid(url)) {
 			
-			
-			String[] urlSplit = url.split("/");
-			String hostName = urlSplit[2];
-			
-			if(urlSplit[urlSplit.length -1].contains(".")) {
-				fileName = urlSplit[urlSplit.length-1];
-				
-			}else{
+			fileName = url.substring(url.lastIndexOf("/") + 1);
+			if(fileName.contains("?")) {
+				fileName = fileName.substring(0, fileName.indexOf("?"));
+			}
+			if(fileName.contains(".com")) {
 				fileName = "";
 			}
-			
-			if(urlSplit[urlSplit.length - 1].contains("?")) {
-				String[] removeQuery = urlSplit[urlSplit.length - 1].split("\\?");
-				fileName = removeQuery[0];
-			}
-			
-			if(hostName == urlSplit[urlSplit.length - 1]) {
-				fileName = "";
-			}
-			
-			
 			
 		}
 
@@ -226,13 +217,14 @@ public class UrlParser {
 
 		if (isValid(url)) {
 
-			String fileName = UrlParser.getFileName(url);
-			if(fileName != "") {
-				String fileExtension = fileName.substring(fileName.indexOf("."));
-				extension = fileExtension;
-			}else {
-				return "";
+			extension = url.substring(url.lastIndexOf(".") + 1);
+			if(extension.contains("?")) {
+				extension = extension.substring(0, extension.indexOf("?"));
 			}
+			if(extension.contains("com")) {
+				extension = "";
+			}
+			
 		}
 
 		return extension;
@@ -245,29 +237,28 @@ public class UrlParser {
 	 * @return Returns the path, if there is one. Returns and empty string if there
 	 *         is not a path in the url
 	 */
+	
 	public static String getPath(String url) {
 
 		String path = null;
 
 		if (isValid(url)) {
-			String hostName = UrlParser.getHost(url);
-			String urlAfterHostName = url.substring(url.indexOf(hostName) - 1, url.lastIndexOf("/") );
-			
-			if(urlAfterHostName.contains("/" + hostName)) {
-				path = urlAfterHostName.replace("/" + hostName, "") + "/";
-			}else {
-				path = "";
+
+			path = url.substring(url.indexOf(".com") + 4);
+			if(path.contains(getFileExtension(url))){
+				path = path.substring(0, path.lastIndexOf("/")+1);
 			}
-		}
-		return path;
 			
+		}
+
+		return path;
 	}
-	
+
 	/**
 	 * Prints out the query string name and value pairs.
 	 * 
 	 * Note that a query string is made of key/value pairs. Each pair is separated
-	 * by and ampersand (&) Within each pair, the key and value are separated by an
+	 * by an ampersand (&) Within each pair, the key and value are separated by an
 	 * equals sign (=)
 	 * 
 	 * For example: If this is the url:
@@ -282,16 +273,19 @@ public class UrlParser {
 	 * @param url
 	 */
 	public static void parseQueryStringParams(String url) {
-		String query = null;
-		
+
 		if (isValid(url)) {
 
-			query = UrlParser.getQueryString(url);
-			String[] querySplit = query.split("&");
-			for(int x = 0; x < querySplit.length; x++) {
-				String[] keyValue = querySplit[x].split("=");
-				System.out.println(keyValue[0] + ": " + keyValue[1]);
-			}
-		}	
+			String queryString = null;
+			queryString = url.substring(url.lastIndexOf(".") + 1);
+			String[] splitting = queryString.split("\\?|=|&");
+			System.out.println(splitting[1] + ": " + splitting[2]);
+			System.out.println(splitting[3] + ": " + splitting[4]);
+			System.out.println(splitting[5] + ": " + splitting[6]);
+			
+			System.out.println(Arrays.deepToString(splitting));
+		}
+
 	}
+
 }
