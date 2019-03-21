@@ -8,6 +8,26 @@ such as $100, $41.99, $0.05.
 */
 public class Money {
 	
+	public static void main(String[] args) {
+		Money m1 = new Money();
+		m1.set(2L);
+		
+		Money m2 = new Money();
+		m2.set(2.5);
+		
+		Money m3 = new Money();
+		m3.set("3.10");
+		
+		Money m4 = new Money();
+		m4.set(m3);
+		
+		Money m5 = m1.add(m2);
+		m5.writeOutput();
+		
+		Money m6 = m3.times(2);
+		m6.writeOutput();
+	}
+	
 	private long dollars;
 	private long cents;
 	
@@ -95,6 +115,7 @@ public class Money {
 		}else {
 			System.out.print("." + cents);
 		}
+		System.out.println("\n");
 	}
 	
 	
