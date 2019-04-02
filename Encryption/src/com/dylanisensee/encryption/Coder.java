@@ -1,11 +1,11 @@
 package com.dylanisensee.encryption;
 
 public class Coder {
-
+	private final int KEY = 5; 
 	public static void main(String[] args) {
 		Coder test = new Coder();
 
-		String toEncrypt = test.encrypt("this is about to be encrypted");
+		String toEncrypt = test.encrypt("this string will be encrypted and then decrypted");
 		System.out.println(toEncrypt);
 		
 		String decrypted = test.decrypt(toEncrypt);
@@ -31,8 +31,6 @@ public class Coder {
 		}
 		return str;
 	}
-	
-	private final int KEY = 5; 
 	
 	public String encrypt(String stringToEncrypt) {
 		int[] asciiStringArr = convertToAscii(stringToEncrypt);
