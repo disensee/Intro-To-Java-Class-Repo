@@ -66,4 +66,17 @@ public class User {
 		}
 		return false;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("ID: %d Name: %s %s Email: %s Role: %s", id, firstName, lastName, email, role);
+	}
+	
+
+	public boolean equals(User u) {
+		if(this.id == u.getId()) {
+			return true;
+		}
+		return false;
+	}
 }
