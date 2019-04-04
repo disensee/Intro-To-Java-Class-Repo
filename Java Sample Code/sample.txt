@@ -1,0 +1,5 @@
+hello world!
+this is a second line
+I also added third line
+This will be written into the file
+This was the second line I wrote to the file.

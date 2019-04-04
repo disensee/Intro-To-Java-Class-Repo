@@ -55,10 +55,42 @@ public class SchoolSystemApp {
 			System.out.println("s1 and s3 are referring to the same student");
 		}
 		
-		School school1 = new School(1, "Western");
+		MySchool school1 = new MySchool(1, "Western");
 		school1.enrollStudent(s1);
 		school1.enrollStudent(s2);
 		school1.enrollStudent(s3);
+		
+		String str = s3.toString();
+		System.out.println(str);
+		
+		
+//		Here are the steps we followed (let's paste these steps into a comment in our SchoolSystem class)
+//
+//		Before we start, notice that private instance variables cannot be accessed from subclasses
+//		(you must use get/set methods from the Student class to access the private instance variables in User)
+//
+//		1.  Let's go into the School class and make the students 'protected' instead of private (we'll extend School in a bit).
+//		This will allow sub classes of School to access the students directly (this could be a security problem!)
+//
+//		2. Make the School class abstract and add and abstract method: public abstract void saveStudents();
+//
+//		3. Add a method call to saveStudents() from enrollStudent() (when a new student is enrolled we should probably 
+//		save all of our student data). Note that you cannot instantiate an abstract class (because it's not complete). 
+//		But you can extend it, and then provide the details to complete it by overridding the abstract method. So lets 
+//		make a sub class of School and provide the details of how we want to save our student data…
+//
+//		4. Create a class called MySchool that extends School
+//
+//		5. Add a constructor that takes the id and name params, make sure to call super(id, name)
+//
+//		6. Override saveStudents() - We'll just simulate saving the students to a CSV file, but the beauty of the abstract
+//		School class is that different schools in the system (sub classes of School)  can save student data however they want
+//		(to CSV, or to a database, or whatever). The designers of the School class don't care HOW the student data is saved,
+//		they know that they can just invoke saveStudents() and leave it up to the sub classes to define exactly how the student
+//		data will actually be saved.
+
+
+		 
 	}
 
 }

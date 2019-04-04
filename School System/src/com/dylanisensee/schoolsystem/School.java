@@ -2,13 +2,13 @@ package com.dylanisensee.schoolsystem;
 
 import java.util.ArrayList;
 
-public class School {
+public abstract class School {
 	
 	//instance variables
 	private int id;
 	private String name;
 	
-	private ArrayList<Student> students = new ArrayList();
+	protected ArrayList<Student> students = new ArrayList();
 	
 	//setters/getters
 	public int getId() {
@@ -41,7 +41,12 @@ public class School {
 		}
 		students.add(newStudent);
 		System.out.println(newStudent.getFirstName() + " enrolled.");
+		saveAllStudents();
 		return true;
 	}
+	
+	public abstract void saveAllStudents();
+		
+	
 	
 }
