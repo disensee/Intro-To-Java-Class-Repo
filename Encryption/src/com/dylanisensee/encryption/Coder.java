@@ -1,15 +1,19 @@
 package com.dylanisensee.encryption;
 
+import java.util.Scanner;
+
 public class Coder {
 	private final int KEY = 5; 
 	public static void main(String[] args) {
 		Coder test = new Coder();
-
-		String toEncrypt = test.encrypt("this string will be encrypted and decrytped.");
-		System.out.println(toEncrypt);
+		Scanner keyboard = new Scanner(System.in);
+				
+		System.out.println("Please enter the message you would like to encrypt: ");
+		String toEncrypt = keyboard.nextLine();
+		String encryptedInput = test.encrypt(toEncrypt);
+		System.out.println("Your encrypted message: " + encryptedInput);
+		System.out.println("Your original message: " + toEncrypt);
 		
-		String decrypted = test.decrypt(toEncrypt);
-		System.out.println(decrypted);
 	}
 	
 	private int[] convertToAscii(String s) {
