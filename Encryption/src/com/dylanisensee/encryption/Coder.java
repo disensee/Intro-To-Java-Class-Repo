@@ -5,7 +5,7 @@ public class Coder {
 	public static void main(String[] args) {
 		Coder test = new Coder();
 
-		String toEncrypt = test.encrypt("this string will be encrypted and then decrypted");
+		String toEncrypt = test.encrypt("this string will be encrypted and decrytped.");
 		System.out.println(toEncrypt);
 		
 		String decrypted = test.decrypt(toEncrypt);
