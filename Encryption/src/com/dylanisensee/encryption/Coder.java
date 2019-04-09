@@ -14,6 +14,8 @@ public class Coder {
 		System.out.println("Your encrypted message: " + encryptedInput);
 		System.out.println("Your original message: " + toEncrypt);
 		
+		keyboard.close();
+		
 	}
 	
 	private int[] convertToAscii(String s) {
