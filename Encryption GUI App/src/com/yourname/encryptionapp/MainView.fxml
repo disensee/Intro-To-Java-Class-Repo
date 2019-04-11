@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourname.encryptionapp.MainViewController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="This is the Main View of our App" />
+      <Button fx:id="btnSomeButton" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onMouseClicked="#handleSomeButtonClick" text="Some Button" />
+      <TextArea fx:id="txtSomeText" layoutX="14.0" layoutY="83.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="btnEncrypt" layoutX="14.0" layoutY="297.0" mnemonicParsing="false" onMouseClicked="#encryptMessage" text="Encrypt" />
+      <Button fx:id="btnDecrypt" layoutX="73.0" layoutY="297.0" mnemonicParsing="false" onMouseClicked="#decryptMessage" text="Decrypt" />
+   </children>
+</AnchorPane>
