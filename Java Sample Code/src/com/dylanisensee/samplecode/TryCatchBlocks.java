@@ -158,7 +158,7 @@ public class TryCatchBlocks {
 				
 	}
 	
-	public static String lookUpDefinitionV2(String termToLookUp) throws Exception{
+	public static String lookUpDefinitionV2(String termToLookUp)throws Exception{
 		
 		// create a dictionary of 'terms' and their definition
 		HashMap<String, String> terms = new HashMap<String, String>();
@@ -169,6 +169,7 @@ public class TryCatchBlocks {
 		if(terms.containsKey(termToLookUp)) {
 			return terms.get(termToLookUp);
 		}else {
+		
 			throw new Exception("Term Not Found");
 		}
 			
