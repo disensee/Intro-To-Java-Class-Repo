@@ -16,7 +16,7 @@ public class SecureMessage extends Message{
 	@Override
 	public void send() {
 		Coder test = new Coder();
-		test.encrypt(getMsg());
+		String encryptedMsg = test.encrypt(getMsg());
 		super.send();
 	}
 }

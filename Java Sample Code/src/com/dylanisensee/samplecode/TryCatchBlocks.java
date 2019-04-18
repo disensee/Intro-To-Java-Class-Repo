@@ -73,7 +73,7 @@ public class TryCatchBlocks {
 			System.out.println("Enter yet another int");
 			int x = keyboard.nextInt();
 			System.out.println("x is: " + x);
-			//System.out.println(someArray[6]);
+			System.out.println(someArray[6]);
 			throw new Exception("FOO!");
 		}catch(InputMismatchException e) {
 			System.out.println("Input mismatch");
@@ -94,7 +94,7 @@ public class TryCatchBlocks {
 		
 		// Step 4
 		// Sometimes method return strings, but if something goes wrong, they return null instead
-		String str = TryCatchBlocks.lookUpDefinition("blahhhh");
+		String str = TryCatchBlocks.lookUpDefinition("Java");
 		System.out.println(str);
 		
 		// if we know that the method could return null can check for it...
